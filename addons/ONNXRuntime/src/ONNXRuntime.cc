@@ -68,7 +68,7 @@ ONNXRuntime::Tensor<T> ONNXRuntime::run(Tensor<T>& input,
   }
 
   // run the inference
-  auto output_tensors = session_->Run(session_->GetInputNames(), tensors_in, session_->GetOutputNames());
+  auto output_tensors = session_->Run(session_->GetInputNames(), tensors_in, session_->GetOutputNames()); // Inference !!!
 
   // convert output tensor to values
   Tensor<T> outputs;

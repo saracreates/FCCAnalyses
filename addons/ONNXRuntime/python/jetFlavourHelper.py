@@ -7,7 +7,7 @@ ROOT.gROOT.SetBatch(True)
 class JetFlavourHelper:
     def __init__(self, coll, jet, jetc, tag=""):
 
-        self.jet = jet
+        self.jet = jet 
         self.const = jetc
 
         self.tag = tag
@@ -106,6 +106,10 @@ class JetFlavourHelper:
 
         self.definition["pfcand_ct{}".format(self.tag)] = "JetConstituentsUtils::XPtoPar_ct({}, {}, Bz{})".format(
             self.const, self.trackstate, self.tag
+        )
+
+        self.definition["pfcand_omega{}".format(self.tag)] = "JetConstituentsUtils::get_omega({}, {})".format(
+            self.const, self.trackstate
         )
 
         self.definition["pfcand_dptdpt{}".format(self.tag)] = "JetConstituentsUtils::get_omega_cov({}, {})".format(

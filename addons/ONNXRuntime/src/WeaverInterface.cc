@@ -18,13 +18,25 @@ WeaverInterface::WeaverInterface(const std::string& onnx_filename,
   std::vector<std::string> input_names;
   try {
     const auto json = nlohmann::json::parse(json_file);
-    json.at("input_names").get_to(input_names);
-    for (const auto& input : input_names) {
-      const auto& group_params = json.at(input);
+    json.at("input_names").get_to(input_names); // input_names is a vector of strings: pf_points pf_features pf_vectors pf_mask
+    std::cout << "Input names: ";
+    for (const auto& name : input_names) {
+      std::cout << name << " ";
+    }
+    std::cout << std::endl;
+    for (const auto& input : input_names) { // loops over pf_points pf_features pf_vectors pf_mask
+      const auto& group_params = json.at(input); // group params is then the dictionary of the input name; look in json. It always has has three keys: var_names, var_infos, var_length
+      //std::cout << "Group parameters: " << group_params << std::endl;
+      // std::cout << "Group parameters:";
+      // for (auto it = group_params.begin(); it != group_params.end(); ++it) {
+      //   std::cout << it.key() << " : " << it.value() << std::endl;
+      // }
       auto& info = prep_info_map_[input];
       info.name = input;
+      //std::cout << "Preprocessing parameters for '" << input << "':" << std::endl;
       // retrieve the variables names
       group_params.at("var_names").get_to(info.var_names);
+      //std::cout << "Group parameters: " << group_params << std::endl;
       // retrieve the shapes for all variables
       if (group_params.contains("var_length")) {
         info.min_length = info.max_length = group_params.at("var_length");
@@ -34,6 +46,8 @@ WeaverInterface::WeaverInterface(const std::string& onnx_filename,
         info.max_length = group_params.at("max_length");
         input_shapes_.push_back({1, (int64_t)info.var_names.size(), -1});
       }
+      // print last input_shapes_ element
+      //std::cout << "Input shapes: " << input_shapes_.back() << std::endl;
       // for all variables, retrieve the allowed range
       const auto& var_info_params = group_params.at("var_infos");
       for (const auto& name : info.var_names) {
@@ -92,6 +106,9 @@ size_t WeaverInterface::variablePos(const std::string& var_name) const {
 }
 
 rv::RVec<float> WeaverInterface::run(const rv::RVec<ConstituentVars>& constituents) {
+  /*
+  * constituents is the collection of all jet constituents. Each constituent is a collection of observables (ConstituentVars).
+  */
   size_t i = 0;
   for (const auto& name : onnx_->inputNames()) {
     const auto& params = prep_info_map_.at(name);
@@ -127,7 +144,7 @@ rv::RVec<float> WeaverInterface::run(const rv::RVec<ConstituentVars>& constituen
     values.resize(it_pos);
     ++i;
   }
-  return onnx_->run<float>(data_, input_shapes_)[0];
+  return onnx_->run<float>(data_, input_shapes_)[0]; // this runs the interference on the preprocessed data
 }
 
 void WeaverInterface::PreprocessParams::dumpVars() const {
