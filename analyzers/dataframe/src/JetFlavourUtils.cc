@@ -39,7 +39,7 @@ namespace FCCAnalyses {
             constit_vars.push_back((float)vars.at(k).at(i).at(j));
           jet_sc_vars.push_back(constit_vars);
         }
-        out.emplace_back(gWeavers.at(slot)->run(jet_sc_vars));
+        out.emplace_back(gWeavers.at(slot)->run(jet_sc_vars)); // run the weaver inference for this specific jet !!!
       }
       return out;
     }
