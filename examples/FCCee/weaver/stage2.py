@@ -1,8 +1,11 @@
 import sys
 from array import array
 from ROOT import TFile, TTree
-from examples.FCCee.weaver.config import variables_pfcand, variables_jet, flavors
+from examples.FCCee.weaver.config_sara import variables_pfcand, variables_jet, flavors
 
+print("Running stage2.py")
+
+flavors = ["g", "s", "c", "b", "tau", "u", "d"] # hard coded bc for some reason if I change flavors in the config file, it doesn't change here?
 debug = False
 
 if len(sys.argv) < 2:

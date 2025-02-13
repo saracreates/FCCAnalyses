@@ -56,7 +56,7 @@ class RDFanalysis:
         jetClusteringHelper = ExclusiveJetClusteringHelper(collections["PFParticles"], njets, tag)
 
         ## run jet clustering
-        df = jetClusteringHelper.define(df)
+        df = jetClusteringHelper.define(df) # this is the actual data that is input for tagging! 
 
         ## define jet flavour tagging parameters
 

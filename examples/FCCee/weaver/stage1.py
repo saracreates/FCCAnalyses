@@ -1,4 +1,4 @@
-from examples.FCCee.weaver.config import (
+from examples.FCCee.weaver.config_sara import (
     variables_pfcand,
     variables_jet,
     variables_event,
@@ -33,6 +33,15 @@ class RDFanalysis:
             jetClusteringHelper.constituents,
         )
 
+        df = df.Define(
+            "gen_vertex",
+            "FCCAnalyses::MCParticle::get_EventPrimaryVertexP4()(Particle)",
+        ) 
+
+        df = df.Define("jet_PV_x", "gen_vertex.X()")
+        df = df.Define("jet_PV_y", "gen_vertex.Y()")
+        df = df.Define("jet_PV_z", "gen_vertex.Z()")
+
         ## define observables for tagger
         df = jetFlavourHelper.define(df)
 
@@ -50,5 +59,7 @@ class RDFanalysis:
         branches_event = list(variables_event.keys())
 
         branchList = branches_event + branches_jet + branches_pfcand
+
+        print("Branches: ", branchList)
 
         return branchList
