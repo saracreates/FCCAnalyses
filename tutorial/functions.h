@@ -35,14 +35,14 @@ Vec_rp resonanceBuilder_mass_recoil::resonanceBuilder_mass_recoil::operator()(Ve
     Vec_rp result;
     result.reserve(3);
     std::vector<std::vector<int>> pairs; // for each permutation, add the indices of the muons
-    int n = legs.size();
+    int n = legs.size(); // number of leptons/muons
   
-    if(n > 1) {
+    if(n > 1) { // at last two leptons required
         ROOT::VecOps::RVec<bool> v(n);
         std::fill(v.end() - 2, v.end(), true); // helper variable for permutations
-        do {
+        do { // 
             std::vector<int> pair;
-            rp reso;
+            rp reso; // ReconstructedParticleData object for the resonance
             reso.charge = 0;
             TLorentzVector reso_lv; 
             for(int i = 0; i < n; ++i) {
@@ -74,14 +74,14 @@ Vec_rp resonanceBuilder_mass_recoil::resonanceBuilder_mass_recoil::operator()(Ve
             result.emplace_back(reso);
             pairs.push_back(pair);
 
-        } while(std::next_permutation(v.begin(), v.end()));
+        } while(std::next_permutation(v.begin(), v.end())); // loop over all permutations
     }
     else {
         std::cout << "ERROR: resonanceBuilder_mass_recoil, at least two leptons required." << std::endl;
         exit(1);
     }
   
-    if(result.size() > 1) {
+    if(result.size() > 1) { // if more than one lepton pair, select the best one
   
         Vec_rp bestReso;
         
@@ -136,7 +136,7 @@ Vec_rp resonanceBuilder_mass_recoil::resonanceBuilder_mass_recoil::operator()(Ve
         result.emplace_back(l2);
         return result;
     }
-}    
+} // returns 3 particles: resonance and two leptons
 
 
 
