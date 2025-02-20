@@ -119,7 +119,7 @@ def build_graph(df, dataset):
     # the function resonanceBuilder_mass_recoil returns the best lepton pair compatible with the Z mass (91.2 GeV) and recoil at 125 GeV
     # the argument 0.4 gives a weight to the Z mass and the recoil mass in the chi2 minimization
     # technically, it returns a ReconstructedParticleData object with index 0 the di-lepton system, index and 2 the leptons of the pair
-    df = df.Define("zbuilder_result", "FCCAnalyses::ZHfunctions::resonanceBuilder_mass_recoil(91.2, 125, 0.4, 240, false)(muons, MCRecoAssociations0, MCRecoAssociations1, ReconstructedParticles, Particle, Particle0, Particle1)")
+    df = df.Define("zbuilder_result", "FCCAnalyses::ZHfunctions::resonanceBuilder_mass_recoil(91.2, 125, 0.4, 240, false)(muons, MCRecoAssociations0, MCRecoAssociations1, ReconstructedParticles, Particle, Particle0, Particle1)") # last two: Vec_i parents, Vec_i daugthers
     df = df.Define("zmumu", "Vec_rp{zbuilder_result[0]}") # the Z
     df = df.Define("zmumu_muons", "Vec_rp{zbuilder_result[1],zbuilder_result[2]}") # the leptons 
     df = df.Define("zmumu_m", "FCCAnalyses::ReconstructedParticle::get_mass(zmumu)[0]") # Z mass
