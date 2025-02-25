@@ -269,6 +269,14 @@ variables_pfcand = {
         "xmax": 0.5,
         "scale": "log",
     },
+    "pfcand_d0_wrt_000": {
+        "name": "pfcand_d0_wrt_000",
+        "title": "IP d0 wrt 000 [mm]",
+        "bin": 100,
+        "xmin": -0.5,
+        "xmax": 0.5,
+        "scale": "log",
+    },
     "pfcand_ct": {
         "name": "pfcand_ct",
         "title": "cot(theta)",
@@ -458,31 +466,31 @@ variables_jet = {
         "xmax": 20,
         "scale": "log",
     },
-    # primary vertex
-    "jet_PV_x": {
-        "name": "jet_PV_x",
-        "title": "PV x [mm]^{jet}",
-        "bin": 20,
-        "xmin": 0,
-        "xmax": 20,
-        "scale": "log",
-    },
-    "jet_PV_y": {
-        "name": "jet_PV_y",
-        "title": "PV y [mm]^{jet}",
-        "bin": 20,
-        "xmin": 0,
-        "xmax": 20,
-        "scale": "log",
-    },
-    "jet_PV_z": {
-        "name": "jet_PV_z",
-        "title": "PV z [mm]^{jet}",
-        "bin": 20,
-        "xmin": 0,
-        "xmax": 20,
-        "scale": "log",
-    },
+    # # primary vertex
+    # "jet_PV_x": {
+    #     "name": "jet_PV_x",
+    #     "title": "PV x [mm]^{jet}",
+    #     "bin": 20,
+    #     "xmin": 0,
+    #     "xmax": 20,
+    #     "scale": "log",
+    # },
+    # "jet_PV_y": {
+    #     "name": "jet_PV_y",
+    #     "title": "PV y [mm]^{jet}",
+    #     "bin": 20,
+    #     "xmin": 0,
+    #     "xmax": 20,
+    #     "scale": "log",
+    # },
+    # "jet_PV_z": {
+    #     "name": "jet_PV_z",
+    #     "title": "PV z [mm]^{jet}",
+    #     "bin": 20,
+    #     "xmin": 0,
+    #     "xmax": 20,
+    #     "scale": "log",
+    # },
 }
 
 variables_event = {

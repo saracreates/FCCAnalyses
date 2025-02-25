@@ -104,6 +104,14 @@ class JetFlavourHelper:
             self.const, self.trackstate, self.tag
         )
 
+        self.definition["pfcand_d0_wrt_000{}".format(self.tag)] = "JetConstituentsUtils::XPtoPar_dxy_wrt_000({}, {})".format(
+            self.const, self.trackstate
+        )
+
+        self.definition["pfcand_omega{}".format(self.tag)] = "JetConstituentsUtils::get_omega({}, {})".format(
+            self.const, self.trackstate
+        )
+
         self.definition["pfcand_ct{}".format(self.tag)] = "JetConstituentsUtils::XPtoPar_ct({}, {}, Bz{})".format(
             self.const, self.trackstate, self.tag
         )

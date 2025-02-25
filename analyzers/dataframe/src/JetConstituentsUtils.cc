@@ -234,6 +234,13 @@ namespace FCCAnalyses
       return cast_constituent_4(jcs, tracks, V, Bz, ReconstructedParticle2Track::XPtoPar_dxy);
     }
 
+    rv::RVec<FCCAnalysesJetConstituentsData> XPtoPar_dxy_wrt_000(const rv::RVec<FCCAnalysesJetConstituents> &jcs,
+                                                         const ROOT::VecOps::RVec<edm4hep::TrackState> &tracks)
+    {
+
+      return cast_constituent_2(jcs, tracks, ReconstructedParticle2Track::XPtoPar_dxy_wrt_000);
+    }
+
     rv::RVec<FCCAnalysesJetConstituentsData> XPtoPar_dz(const rv::RVec<FCCAnalysesJetConstituents> &jcs,
                                                         const ROOT::VecOps::RVec<edm4hep::TrackState> &tracks,
                                                         const TLorentzVector &V, // primary vertex posotion and time in mm

@@ -68,6 +68,10 @@ namespace FCCAnalyses {
 							 const ROOT::VecOps::RVec<edm4hep::TrackState>&,
 							 const TLorentzVector& V, // primary vertex
 							 const float&);
+
+    rv::RVec<FCCAnalysesJetConstituentsData> XPtoPar_dxy_wrt_000(const rv::RVec<FCCAnalysesJetConstituents>&,
+							 const ROOT::VecOps::RVec<edm4hep::TrackState>&);
+
     rv::RVec<FCCAnalysesJetConstituentsData> XPtoPar_dz(const rv::RVec<FCCAnalysesJetConstituents>&,
 							const ROOT::VecOps::RVec<edm4hep::TrackState>&,
 							const TLorentzVector& V, // primary vertex

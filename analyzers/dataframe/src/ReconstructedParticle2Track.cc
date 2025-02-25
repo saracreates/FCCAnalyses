@@ -97,12 +97,30 @@ namespace ReconstructedParticle2Track{
 	      out.push_back(D);
 
       } else {
-	out.push_back(-9.);
+	        out.push_back(-9.);
       }
     }
     return out;
   }
 
+  ROOT::VecOps::RVec<float> XPtoPar_dxy_wrt_000(const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& in,
+					const ROOT::VecOps::RVec<edm4hep::TrackState>& tracks) {
+
+    ROOT::VecOps::RVec<float> out;
+
+    for (const auto & rp: in) {
+
+      if( rp.tracks_begin < tracks.size()) {
+
+        float D0_wrt0 = tracks.at(rp.tracks_begin).D0;
+	      out.push_back(D0_wrt0);
+
+      } else {
+	        out.push_back(-9.);
+      }
+    }
+    return out;
+  }
 
 
   ROOT::VecOps::RVec<float> XPtoPar_dz(const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& in,
