@@ -197,7 +197,6 @@ def mapHistosFromHistmaker(config: dict[str, any], hist_name: str, param, hist_c
                 # print(f"Getting histogram {hist_name} from {fin}")
                 h = tf.Get(hist_name)
                 hh = copy.deepcopy(h)
-                print(f"Histogram {hist_name}: {h}")
                 hh.SetDirectory(0)
             # LOGGER.info("ScaleSig: %g", scaleSig)
             hh.Scale(param.intLumi * scaleSig)
@@ -1147,8 +1146,9 @@ def drawStack(
     h_dummy.GetXaxis().SetLimits(xmin, xmax)
 
     # if cutFlow table
-    if len(xtitle) > 1:
-        h_dummy.GetXaxis().SetLimits(-0.5, len(xtitle) - 0.5)
+    # if len(xtitle) > 1:
+    #     print("set x axis differnetly")
+    #     h_dummy.GetXaxis().SetLimits(-0.5, len(xtitle) - 0.5)
 
 
 
@@ -1480,7 +1480,6 @@ def run(args):
     if config["ana_type"] == "histmaker":
         LOGGER.info("Plotting histograms from histmaker step...")
         for hist_name, hist_cfg in script_module.hists.items():
-            print("hist_cfg keys: ", hist_cfg.keys())
             runPlotsHistmaker(config, args, hist_cfg["input"], script_module, hist_cfg)
         # check if there are 2D histograms to plot
         try:
