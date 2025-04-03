@@ -979,6 +979,9 @@ def extract_cutflow_data(param, hist_name, hist_cfg, hsignal, hbackgrounds):
         f.write(table_latex)
         f.write(latex_postamble)
 
+    ### prints the table in latex style to the console
+    os.system("cat " + output_table)
+
     pdflatex_cmd = ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "-output-directory", param.outdir, output_table]
     pdf_generated = False
 
